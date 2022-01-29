@@ -1,34 +1,43 @@
 {%extends 'head.html'%}
 
 {%block content%}
-<div class="posts">
-    <h2>Posty:</h2>
-    {%for instance in queryset%}
-        {%if instance.user in friends or instance.user == request.user%}
-            <div class="post">
-                <div class="user">
-                    <img src="{{instance.user.account.image.url}}"/>
-                    <a href="/">
-                        {{instance.user.first_name}} {{instance.user.last_name}}</a></br>
-                        {{instance.date}}
-                </div>
-            <div class="conent">
-                </br>{{instance.content}}
-            </div>
-            {%if instance.photo%}
-                <div class="photo">
-                    <img class="post_photo"src="{{instance.photo.url}}"/>
-                </div>
-            {%endif%}
-                {{instance.likes.count}}
-                <a href="/">
-                    like
-                </a>|
-                <a href="/">
-                    comment
-                </a>
-        {%endif%}
-        {%endfor%}
+    <div class="search">
+        <form method="GET">
+            <input type="search" placeholder="Search", name="query", value="{{request.GET.query}}">
+            <button class="icon", type="submit">Szukajnij</button>
+        </form>
     </div>
-</div>
+    <div class="add">
+        <p><a href="/post-create">Dodaj posta</a></p>
+    </div>
+    <div class="posts">
+        <h2>Posty:</h2>
+        {%for instance in queryset%}
+            {%if instance.user in friends or instance.user == request.user%}
+                <div class="post">
+                    <div class="user">
+                        <img src="{{instance.user.account.image.url}}"/>
+                        <a href="/">
+                            {{instance.user.first_name}} {{instance.user.last_name}}</a></br>
+                            {{instance.date}}
+                    </div>
+                <div class="conent">
+                    </br>{{instance.content}}
+                </div>
+                {%if instance.photo%}
+                    <div class="photo">
+                        <img class="post_photo"src="{{instance.photo.url}}"/>
+                    </div>
+                {%endif%}
+                    {{instance.likes.count}}
+                    <a href="/">
+                        like
+                    </a>|
+                    <a href="/">
+                        comment
+                    </a>
+            {%endif%}
+            {%endfor%}
+        </div>
+    </div>
 {%endblock%}

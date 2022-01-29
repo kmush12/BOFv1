@@ -1,0 +1,10 @@
+{%extends 'head.html'%}
+
+{%block content%}
+<div class="create_post">
+    <form action="." method="POST" enctype="multipart/form-data">{%csrf_token%}
+        {{form.as_p}}
+        <button type="submit" >Dodaj</i></button>
+    </form>
+</div>
+{%endblock%}
