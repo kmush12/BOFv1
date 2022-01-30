@@ -2,14 +2,24 @@
 <html lang = "pl">
 
 <head>
-    <title>Title</title>
+
+    <title>Book of Face</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    </head>
-    <body>
+</head>
+<body>
     <div class="navbar">
-        <p><a href="/">Zaproszenia</a> <a href="/">Profil</a> <a href="/">Ustawienia</a ><a href="/">Strona główna</a></p>
+        <h1> <a href="/">BoF</a></h1> 
+        <div class="search">
+            <form method="GET", action="{% url 'account:search-view'%}">
+                <input type="search" placeholder="Szukaj na BoF", name="query", value="{{request.GET.query}}">
+                <button-8 class="icon", type="submit">Szukaj w BoF</button-8>
+                
+            </form>
+        <d><a href="/requests">Zaproszenia</a> <a href="{{user.account.get_absolute_url}}">Profil</i></a> <a href="/settings">Ustawienia</a ><d/>
+
+        </div>    
     </div>
     <div class="content">
         {%block content%}
@@ -17,5 +27,5 @@
         {%endblock%}
     </div>
 
-    </body>
+</body>
 </html>

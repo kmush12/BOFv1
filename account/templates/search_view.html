@@ -1,0 +1,7 @@
+{%extends 'head.html'%}
+
+{%block content%}
+    {% for user in queryset%}
+        <p>{{user.first_name}} {{user.last_name}}<a href="{{user.account.get_send_request_url}}"> Zaproś</a></p>
+    {% endfor %}
+{%endblock%}

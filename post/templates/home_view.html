@@ -1,17 +1,14 @@
 {%extends 'head.html'%}
 
 {%block content%}
-    <div class="search">
-        <form method="GET">
-            <input type="search" placeholder="Search", name="query", value="{{request.GET.query}}">
-            <button class="icon", type="submit">Szukajnij</button>
-        </form>
-    </div>
+
+
+
+
     <div class="add">
         <p><a href="/post-create">Dodaj posta</a></p>
     </div>
     <div class="posts">
-        <h2>Posty:</h2>
         {%for instance in queryset%}
             {%if instance.user in friends or instance.user == request.user%}
                 <div class="post">
