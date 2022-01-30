@@ -6,6 +6,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from account.forms import SignUpForm
 from account.models import Account, Request
 from django.db.models import Q
+from post.models import Post
+
 # Create your views here.
 def register_view(request):
     if request.user.is_authenticated:
@@ -83,3 +85,12 @@ def decline_request_view(request, id):
     requesto = get_object_or_404(Request, id=id)
     requesto.delete()
     return redirect('post:home-view')
+
+def profile_view(request, id):
+    user = get_object_or_404(User, id=id)
+    posts = Post.objects.filter(user=user)
+    context = {
+        'user': user,
+        'posts': posts
+    }
+    return render(request, "profile_view.html", context)

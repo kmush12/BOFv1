@@ -1,0 +1,28 @@
+{%extends 'head.html'%}
+
+{%block content%}
+<div class="profile">
+    <img src="{{user.account.image.url}}"/>
+    <p>{{user.first_name}} {{user.last_name}}</p>
+</div>
+<div class="posts">
+    <p>Posty:</p>
+    {% for post in posts %}
+        <div class="post">
+            <div class="user">
+                <img src="{{post.user.account.image.url}}"/>
+                <p>{{post.user.first_name}} {{post.user.last_name}} {{post.date}}</p>
+            </div>
+            <div class="conent">
+                <p>{{post.content}}</p>
+            </div>
+            {%if post.photo%}
+            <div class="photo">
+                <img class="post_photo"src="{{post.photo.url}}"/>
+            </div>
+            {%endif%}
+            <p>{{post.likes.count}}<a href="{{post.get_like_url}}">like</a></p>
+        </div>
+    {% endfor %}
+</div>
+{%endblock%}

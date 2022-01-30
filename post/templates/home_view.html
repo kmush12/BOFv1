@@ -27,7 +27,7 @@
                     </div>
                 {%endif%}
                     {{instance.likes.count}}
-                    <a href="/">
+                    <a href="{{instance.get_like_url}}">
                         like
                     </a>|
                     <a href="/">

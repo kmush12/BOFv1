@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404
 from post.models import Post
 
 # Create your views here.
@@ -27,3 +28,11 @@ def post_create_view(request):
         "form": form
     }
     return render(request, "post_create_view.html", context)
+
+def post_like_view(request, id):
+    post = get_object_or_404(Post, id=id)
+    if not post.likes.all().contains(request.user):
+        post.likes.add(request.user)
+    else:
+        post.likes.remove(request.user)
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
