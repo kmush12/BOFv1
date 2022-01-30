@@ -1,0 +1,10 @@
+{%extends 'head.html'%}
+
+{%block content%}
+    {% for request in requests%}
+        <p>{{request.user_from.first_name}} {{request.user_from.last_name}} wysłał ci zaproszenie
+        <a href="{{request.get_accept_request_url}}">Zaakceptuj</a> <a href="{{request.get_decline_request_url}}">Odrzuć</a>
+
+        </p>
+    {% endfor %}
+{%endblock%}
