@@ -1,0 +1,22 @@
+{%extends 'head.html'%}
+
+{%block content%}
+<div class="update-first-name">
+    <form action="." method="POST">{%csrf_token%}
+        {{form1.as_p}}
+        <button type="submit" name="update_first_name">Aktualizuj</button>
+    </form>
+</div>
+<div class="update-last-name">
+    <form action="." method="POST">{%csrf_token%}
+        {{form2.as_p}}
+        <button type="submit" name="update_last_name">Aktualizuj</button>
+    </form>
+</div>
+<div class="update-image">
+    <form action="." method="POST" enctype="multipart/form-data">{%csrf_token%}
+        {{form3.as_p}}
+        <button type="submit" name="update_image">Aktualizuj</button>
+    </form>
+</div>
+{%endblock%}

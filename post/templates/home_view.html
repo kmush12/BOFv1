@@ -14,7 +14,7 @@
                 <div class="post">
                     <div class="user">
                         <img src="{{instance.user.account.image.url}}"/>
-                        <a href="/">
+                        <a href="{{instance.user.account.get_absolute_url}}">
                             {{instance.user.first_name}} {{instance.user.last_name}}</a></br>
                             {{instance.date}}
                     </div>
@@ -30,11 +30,11 @@
                     <a href="{{instance.get_like_url}}">
                         like
                     </a>|
-                    <a href="/">
+                    <a href="{{instance.get_absolute_url}}">
                         comment
                     </a>
             {%endif%}
             {%endfor%}
-        </div>
     </div>
+        </div>
 {%endblock%}

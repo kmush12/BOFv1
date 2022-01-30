@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
-from account.forms import SignUpForm
+from account.forms import SignUpForm, UpdateFirstNameForm, UpdateLastNameForm, UpdateImageForm
 from account.models import Account, Request
 from django.db.models import Q
 from post.models import Post
@@ -94,3 +94,29 @@ def profile_view(request, id):
         'posts': posts
     }
     return render(request, "profile_view.html", context)
+
+def settings_view(request):
+    user = request.user
+    if not user.is_authenticated:
+        return redirect('/')
+    form1 = UpdateFirstNameForm(request.POST or None, instance=request.user)
+    form2 = UpdateLastNameForm(request.POST or None, instance=request.user)
+    form3 = UpdateImageForm(request.POST or None, request.FILES, instance=get_object_or_404(Account, user=request.user))
+    if 'update_first_name' in request.POST:
+        if form1.is_valid():
+            form1.save()
+            return redirect('account:settings-view')
+    elif 'update_last_name' in request.POST:
+        if form2.is_valid():
+            form2.save()
+            return redirect('account:settings-view')
+    elif 'update_image' in request.POST:
+        if form3.is_valid():
+            form3.save()
+            return redirect('account:settings-view')
+    context = {
+        'form1': form1,
+        'form2': form2,
+        'form3': form3
+    }
+    return render(request, "settings_view.html", context)

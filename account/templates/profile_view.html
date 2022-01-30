@@ -21,7 +21,8 @@
                 <img class="post_photo"src="{{post.photo.url}}"/>
             </div>
             {%endif%}
-            <p>{{post.likes.count}}<a href="{{post.get_like_url}}">like</a></p>
+            <p>{{post.likes.count}}<a href="{{post.get_like_url}}">like</a>
+            <a href="{{post.get_absolute_url}}">comment </a></p>
         </div>
     {% endfor %}
 </div>

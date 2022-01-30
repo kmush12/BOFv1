@@ -4,7 +4,7 @@
 <div class="post">
     <div class="user">
         <img src="{{post.user.account.image.url}}"/>
-        <p><a href="/">{{post.user.first_name}} {{post.user.last_name}}</a>
+        <p><a href="{{post.user.account.get_absolute_url}}">{{post.user.first_name}} {{post.user.last_name}}</a>
         {{post.date}}</p>
     </div>
     <div class="conent">
@@ -29,9 +29,9 @@
     {% for comment in comments%}
         <div class="user">
             <img src="{{comment.user.account.image.url}}"/>
-            <p><a href="/">{{comment.user.first_name}} {{comment.user.last_name}}</a> {{comment.date}}</p>Treść komentarza:
+            <p><a href="{{comment.user.account.get_absolute_url}}">{{comment.user.first_name}} {{comment.user.last_name}}</a> {{comment.date}}</p>Treść komentarza:
         </div>
-        <div class="content">
+        <div class="conent">
             <p>{{comment.content}}</p>
         </div>
     {% endfor %}
