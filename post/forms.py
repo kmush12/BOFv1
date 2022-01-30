@@ -1,6 +1,7 @@
 from django import forms
 
-from .models import Post
+from .models import Post, Comment
+
 
 class AddPostForm(forms.ModelForm):
     content = forms.CharField(label='',
@@ -13,3 +14,14 @@ class AddPostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ('content', 'photo')
+
+class AddCommentForm(forms.ModelForm):
+    content = forms.CharField(label='',
+                              widget=forms.Textarea(attrs={
+                                  'rows': '4',
+                                  'placeholder': 'Napisz coś'
+                              }))
+
+    class Meta:
+        model = Comment
+        fields = ('content',)

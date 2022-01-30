@@ -1,0 +1,40 @@
+{%extends 'head.html'%}
+
+{%block content%}
+<div class="post">
+    <div class="user">
+        <img src="{{post.user.account.image.url}}"/>
+        <p><a href="/">{{post.user.first_name}} {{post.user.last_name}}</a>
+        {{post.date}}</p>
+    </div>
+    <div class="conent">
+        <p>{{post.content}}</p>
+    </div>
+    {%if post.photo%}
+        <div class="photo">
+            <img class="post_photo"src="{{post.photo.url}}"/>
+        </div>
+    {%endif%}
+    <p>{{post.likes.count}}<a href="{{post.get_like_url}}">like</a></p>
+
+
+    <p>Comments:</p>
+    <form method="POST">{%csrf_token%}
+        {{form.as_p}}
+            <button type="submit" >Dodaj</button>
+    </form>
+
+
+    <div class="comments">
+    {% for comment in comments%}
+        <div class="user">
+            <img src="{{comment.user.account.image.url}}"/>
+            <p><a href="/">{{comment.user.first_name}} {{comment.user.last_name}}</a> {{comment.date}}</p>Treść komentarza:
+        </div>
+        <div class="content">
+            <p>{{comment.content}}</p>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+{%endblock%}

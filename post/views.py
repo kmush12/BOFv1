@@ -1,9 +1,9 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
-from post.models import Post
+from post.models import Post, Comment
 
 # Create your views here.
-from post.forms import AddPostForm
+from post.forms import AddPostForm, AddCommentForm
 
 
 def home_view(request):
@@ -36,3 +36,19 @@ def post_like_view(request, id):
     else:
         post.likes.remove(request.user)
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def post_detail_view(request, id):
+    post = get_object_or_404(Post, id=id)
+    comments = Comment.objects.filter(post=post)
+    form = AddCommentForm(request.POST or None)
+    if form.is_valid():
+        new_comment = form.save(commit=False)
+        new_comment.user = request.user
+        new_comment.post = post
+        new_comment.save()
+    context = {
+        "post": post,
+        "comments": comments,
+        "form": form
+    }
+    return render(request, "post_detail_view.html", context)
