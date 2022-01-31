@@ -7,6 +7,8 @@ from account.forms import SignUpForm, UpdateFirstNameForm, UpdateLastNameForm, U
 from account.models import Account, Request
 from django.db.models import Q
 from post.models import Post
+from BOF.settings import LOGS_ROOT
+import os
 
 # Create your views here.
 def register_view(request):
@@ -17,7 +19,10 @@ def register_view(request):
         user = form.save()
         Account.objects.create(user=user)
         login(request, user)
-        return redirect("pages:home-view")
+        f = open(os.path.join(LOGS_ROOT, user.username + "-logs.txt"), "a")
+        f.write("\n Stworzono nowe konto")
+        f.close()
+        return redirect("post:home-view")
     context = {
         "form": form
     }
@@ -34,6 +39,9 @@ def login_view(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
+                f = open(os.path.join(LOGS_ROOT, user.username + "-logs.txt"), "a")
+                f.write("\n Zalogowano uzytkownika")
+                f.close()
                 return redirect('/')
         else:
             print()
@@ -43,6 +51,9 @@ def login_view(request):
 def logout_view(request):
     if not request.user.is_authenticated:
         return redirect('/')
+    f = open(os.path.join(LOGS_ROOT, request.user.username + "-logs.txt"), "a")
+    f.write("\n Wylogowano")
+    f.close()
     logout(request)
     return redirect('/')
 
@@ -65,6 +76,9 @@ def send_request_view(request, id):
             requesto = None
         if not requesto:
             Request.objects.create(user_from=request.user, user_to=user)
+            f = open(os.path.join(LOGS_ROOT, user.username + "-logs.txt"), "a")
+            f.write("\n Zaproszono uzytkownika")
+            f.close()
     return redirect('post:home-view')
 
 def requests_list_view(request):
@@ -79,11 +93,17 @@ def accept_request_view(request, id):
     request.user.account.friends.add(requesto.user_from)
     requesto.user_from.account.friends.add(request.user)
     requesto.delete()
+    f = open(os.path.join(LOGS_ROOT, request.user.username + "-logs.txt"), "a")
+    f.write("\n Zaakcpeptowano prosbe")
+    f.close()
     return redirect('post:home-view')
 
 def decline_request_view(request, id):
     requesto = get_object_or_404(Request, id=id)
     requesto.delete()
+    f = open(os.path.join(LOGS_ROOT, user.username + "-logs.txt"), "a")
+    f.write("\n Odrzucono prosbe")
+    f.close()
     return redirect('post:home-view')
 
 def profile_view(request, id):
@@ -105,14 +125,23 @@ def settings_view(request):
     if 'update_first_name' in request.POST:
         if form1.is_valid():
             form1.save()
+            f = open(os.path.join(LOGS_ROOT, user.username + "-logs.txt"), "a")
+            f.write("\n Zmieniono imie")
+            f.close()
             return redirect('account:settings-view')
     elif 'update_last_name' in request.POST:
         if form2.is_valid():
             form2.save()
+            f = open(os.path.join(LOGS_ROOT, user.username + "-logs.txt"), "a")
+            f.write("\n Zmieniono nazwisko")
+            f.close()
             return redirect('account:settings-view')
     elif 'update_image' in request.POST:
         if form3.is_valid():
             form3.save()
+            f = open(os.path.join(LOGS_ROOT, user.username + "-logs.txt"), "a")
+            f.write("\n Zmieniono zdjecie")
+            f.close()
             return redirect('account:settings-view')
     context = {
         'form1': form1,

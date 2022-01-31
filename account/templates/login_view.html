@@ -3,6 +3,8 @@
 {%block content%}
     <form method="POST">{% csrf_token %}
         {{form.as_p}}
-        <button type="submit">Submit</button>
+        <button type="submit">Zaloguj</button>
     </form>
+    <a>Nie masz konta?</a>
+    <a href="/register">Zarejestruj sie</a>
 {%endblock%}

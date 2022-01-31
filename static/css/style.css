@@ -1,0 +1,160 @@
+body {
+    background-color: rgb(236, 236, 240);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    }
+    
+    .user img{
+        
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 25px;
+        -webkit-border-radius: 25px;
+        -moz-border-radius: 25px;
+    }
+    /*navbar*/
+    .container {
+        margin: 0 auto;
+        max-width: 100px;
+        width: 90%;
+      }
+    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+    *{
+        margin: 0;
+        padding: 0;
+        color: #000000;
+        box-sizing: border-box;
+        font-family: 'Roboto', sans-serif;
+      }
+    .navbar {
+        margin: 20 auto;
+        max-width: 100000px;
+        width: 100%;
+        height: 70px;
+        background-color: blue;
+        color:rgb(255, 255, 255);
+    
+    }
+    .posts {
+        margin-top: 5em;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 0px;
+        width: 40em;
+        background-color: rgb(215, 230, 250);
+        border-bottom-left-radius: 3%;
+        border-bottom-right-radius: 3%;
+        border-top-left-radius: 3%;
+        border-top-right-radius: 3%;
+        
+    }
+    
+    h1 a {
+        font-size: 48px;
+        color:rgb(255, 255, 255);
+        margin-left: 3%;
+        text-decoration: none;
+    }
+    .navbar d a {
+        font-size: 25px;
+        color:rgb(255, 255, 255);
+        text-decoration: none;
+    }
+    .add {
+        margin-top: 5em;
+    }
+    .add  p a{
+        margin-top: 5em;
+        margin-left: 45%;
+        margin-bottom: 5em;
+        font-size: 25px;
+        text-decoration: none;
+    
+    }
+    d {
+        position: relative; left:64% ; bottom: 20px;
+        font-size: 25px;
+    }
+    .search {
+        position: relative; left:10% ; bottom: 46%;
+    }
+    button {
+        background-color: #b3d3ea;
+        color: #2c5777;
+        box-shadow: #000000;
+        box-shadow: 5px 5px 5px rgb(64, 38, 212);
+    }
+    .post_photo {
+        margin:auto;
+    }
+    /*profile view*/
+    
+    .profile {
+        margin-left: 52em;
+        margin-top: 2em;
+    }
+    
+    .profile img {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 100px;
+        -webkit-border-radius: 100px;
+        -moz-border-radius: 100px;
+    }
+    .profile p {
+        margin-top: 1em;
+        font-size: 25px;
+        margin-left: 0;
+        text-decoration: none;
+    }
+    
+    /*settings viev*/
+    
+    .update-first-name {
+        font-size: 25px;
+        margin-left: 28em;
+        margin-top: 2em;
+        width: 20em;
+        background-color: rgb(215, 230, 250);
+        border-bottom-left-radius: 3%;
+        border-bottom-right-radius: 3%;
+        border-top-left-radius: 3%;
+        border-top-right-radius: 3%;
+    }
+    
+    .update-last-name {
+        font-size: 25px;
+        margin-left: 28em;
+        margin-top: 1em;
+        width: 20em;
+        background-color: rgb(215, 230, 250);
+        border-bottom-left-radius: 3%;
+        border-bottom-right-radius: 3%;
+        border-top-left-radius: 3%;
+        border-top-right-radius: 3%;
+    }
+    .update-image {
+        font-size: 25px;
+        margin-left: 28em;
+        margin-top: 1em;
+        width: 20em;
+        background-color: rgb(215, 230, 250);
+        border-bottom-left-radius: 3%;
+        border-bottom-right-radius: 3%;
+        border-top-left-radius: 3%;
+        border-top-right-radius: 3%;
+    }
+    /*login viev*/
+    
+    .login {
+        margin-top: 5em;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 0px;
+        width: 40em;
+        background-color: rgb(215, 230, 250);
+        border-bottom-left-radius: 3%;
+        border-bottom-right-radius: 3%;
+    }
