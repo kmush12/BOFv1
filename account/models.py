@@ -6,7 +6,7 @@ from django.urls import reverse
 
 class Account(models.Model):
     user = models.OneToOneField(User, unique=True, on_delete=models.CASCADE)
-    image = models.ImageField(default='default.jpg')
+    image = models.ImageField(default='default.jpeg')
     friends = models.ManyToManyField(User, related_name='user_friends', blank=True)
     def get_absolute_url(self):
         return reverse('account:profile-view', kwargs={'id': self.user.id})
